@@ -45,10 +45,6 @@ public class CiclistaTest {
 		assertArrayEquals(new double[] {10.0, 1.0}, velocidadeTempo, 0);
 	}
 	
-	private void assertArrayEquals(double[] ds, double[] velocidadeTempo, int i) {
-		
-		
-	}
 
 	@Test
 	public void deveInterpretarValoresDeVelocidadeTempoParaDistancia20Tempo2() {
@@ -79,4 +75,21 @@ public class CiclistaTest {
 		double[] velocidadeTempo = Ciclista.interpretarValoresDeVelocidadeTempo("100.0 0.0");
 		assertArrayEquals(new double[] {100.0, 0.0}, velocidadeTempo, 0);
 	}
+	
+	@Test
+	public void deveVerificarConversaoDeTempoSegundosParaMinutos() {
+		double velocidadeTempo = Ciclista.converterUnidadePadraoTempo("10 120","3");
+		assertEquals(2, velocidadeTempo, 0);
+	}
+	@Test
+	public void deveVerificarConversaoDeTempoHorasParaMinutos() {
+		double velocidadeTempo = Ciclista.converterUnidadePadraoTempo("10 3","1");
+		assertEquals(180, velocidadeTempo, 0);
+	}
+	@Test
+	public void deveVerificarConversaoDeKilometrosParaMetros() {
+		double velocidadeTempo = Ciclista.converterUnidadePadraoDistancia("3 200","1");
+		assertEquals(3000, velocidadeTempo, 0);
+	}
+	
 }
