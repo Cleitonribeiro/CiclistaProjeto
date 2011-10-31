@@ -1,41 +1,28 @@
 import java.util.Scanner;
-import java.util.Vector;
 
 public class Ciclista {
 
-	public static void main(String[] args) throws CiclistaException {
-		Scanner entrada = new Scanner(System.in);
+	public static void main(String [] args) throws CiclistaException {
+		Scanner scanner = new Scanner(System.in);
 		
 		while(true) {
-			System.out.print("Informe a distância percorrida e tempo gasto: ");
-			String dadosString = entrada.nextLine();
-
-			Vector dadosVector = interpretarDados(dadosString); 
-			
-			double a = (Double) dadosVector.get(0);
-			double b = (Double) dadosVector.get(1);		
-			double mediaFinal = calculaMedia(a, b);
-	
-			System.out.println("Média: " + mediaFinal);		
+			System.out.print("Informe distancia e tempo: ");
+			String valoresEntrada = scanner.nextLine();
+			double[] velocidadeTempo = interpretarValoresDeVelocidadeTempo(valoresEntrada);
+			double velocidadeMedia = calcularVelocidadeMedia(velocidadeTempo[0], velocidadeTempo[1]);
+			System.out.println("Velocidade media: " + velocidadeMedia);
 		}
 	}
 	
-	private static Vector interpretarDados(String dadosString) {
-		String[] dadosSeparados = dadosString.split(" ");
-			
-			double distancia = Double.parseDouble(dadosSeparados[0]);
-			double tempo = Double.parseDouble(dadosSeparados[1]);
-			
-			Vector dadosVector = new Vector();
-			dadosVector.add(distancia);
-			dadosVector.add(tempo);
-			return dadosVector;
-
+	public static double calcularVelocidadeMedia(double distancia, double tempo) throws CiclistaException {
+		if(tempo == 0.0) {
+			throw new CiclistaException();
+		}
+		return distancia/tempo;
 	}
 
-	public static double calculaMedia(double distancia, double tempo)  throws CiclistaException {
-		double mediaFinal = distancia / tempo;
-		
-		return mediaFinal;
+	public static double[] interpretarValoresDeVelocidadeTempo(String valoresEntrada) {
+		String[] velocidadeTempoString = valoresEntrada.split(" ");
+		return new double[] {Double.parseDouble(velocidadeTempoString[0]), Double.parseDouble(velocidadeTempoString[1])};
 	}
 }
