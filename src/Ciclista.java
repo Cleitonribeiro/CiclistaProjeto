@@ -26,8 +26,11 @@ public class Ciclista {
 			String valoresEntrada = scanner.nextLine();
 			
 			double[] velocidadeTempo = interpretarValoresDeVelocidadeTempo(valoresEntrada);
-			double velocidadeMedia = calcularVelocidadeMedia(velocidadeTempo[0], velocidadeTempo[1]);
-			System.out.println("Velocidade media: " + velocidadeMedia);
+			double[] velocidadeTempoMS = converterUnidadePadraoDistanciaTempo(valoresEntrada,tempoEntrada, distanciaEntrada);
+			double velocidadeMedia = calcularVelocidadeMedia(velocidadeTempoMS[0], velocidadeTempoMS[1]);
+			double velocidadeMediaKmH=velocidadeMedia * 3.6;
+			System.out.println("Velocidade media: " + velocidadeMedia + "m/s" );
+			System.out.println("Velocidade media: " + velocidadeMediaKmH + "km/h" );
 		}
 	}
 	
@@ -35,6 +38,7 @@ public class Ciclista {
 		if(tempo == 0.0) {
 			throw new CiclistaException();
 		}
+		
 		return distancia/tempo;
 	}
 
@@ -69,11 +73,11 @@ public class Ciclista {
 		double distanciaSeparada = Double.parseDouble(velocidadeTempoString[0]);
 		double padraoDistancia = 0;
 		
-		if(distanciaEntrada == "1"){
+		if(distanciaEntrada.equals( "1")){
 			padraoDistancia = distanciaSeparada*1000;
 		}
 			
-		if(distanciaEntrada == "2"){
+		if(distanciaEntrada.equals("2")){
 			padraoDistancia = distanciaSeparada;
 		}
 		
@@ -87,29 +91,32 @@ public class Ciclista {
 		double distanciaSeparada = Double.parseDouble(velocidadeTempoString[0]);
 		double padraoDistancia = 0;
 		
-		if(distanciaEntrada == "1"){
+		if(distanciaEntrada.equals("1")){
 			padraoDistancia = distanciaSeparada*1000;
 		}
 			
-		if(distanciaEntrada == "2"){
+		if(distanciaEntrada.equals("2")){
 			padraoDistancia = distanciaSeparada;
 		}
 		//TEMPO
 		double tempoSeparado = Double.parseDouble(velocidadeTempoString[1]);
+		
 		double padraoTempo = 0;
 		
-		if(tempoEntrada == "1"){
-			padraoTempo = tempoSeparado*60;
+		if(tempoEntrada.equals("1")){
+			padraoTempo = tempoSeparado*3600;
+			
 		}
 			
-		if(tempoEntrada == "2"){
+		if(tempoEntrada.equals("2")){
+			padraoTempo = tempoSeparado*60;
+		}
+		
+		if(tempoEntrada.equals("3")){
 			padraoTempo = tempoSeparado;
 		}
 		
-		if(tempoEntrada == "3"){
-			padraoTempo = tempoSeparado/60;
-		}
-		
+
 		return new double[] {padraoDistancia, padraoTempo};
 	}
 }

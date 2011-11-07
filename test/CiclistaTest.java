@@ -92,4 +92,10 @@ public class CiclistaTest {
 		assertEquals(3000, velocidadeTempo, 0);
 	}
 	
+	@Test
+	public void converterDistanciaMetrosTempoSegundos() {
+		double[] velocidadeTempo = Ciclista.converterUnidadePadraoDistanciaTempo("1 20","1", "1");
+		assertArrayEquals(new double[] {1000, 72000}, velocidadeTempo, 0);
+	}
+	
 }
