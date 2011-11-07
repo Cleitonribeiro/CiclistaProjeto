@@ -78,23 +78,25 @@ public class CiclistaTest {
 	
 	@Test
 	public void deveVerificarConversaoDeTempoSegundosParaMinutos() {
-		double velocidadeTempo = Ciclista.converterUnidadePadraoTempo("10 120","3");
+		double velocidadeTempo = Ciclista.converterUnidadePadraoTempo("10 120",Ciclista.SEGUNDOS);
 		assertEquals(2, velocidadeTempo, 0);
 	}
 	@Test
 	public void deveVerificarConversaoDeTempoHorasParaMinutos() {
-		double velocidadeTempo = Ciclista.converterUnidadePadraoTempo("10 3","1");
+		double velocidadeTempo = Ciclista.converterUnidadePadraoTempo("10 3",Ciclista.HORA);
 		assertEquals(180, velocidadeTempo, 0);
 	}
 	@Test
 	public void deveVerificarConversaoDeKilometrosParaMetros() {
-		double velocidadeTempo = Ciclista.converterUnidadePadraoDistancia("3 200","1");
+		double velocidadeTempo = Ciclista.converterUnidadePadraoDistancia("3 200",Ciclista.KILOMETROS);
+
+		
 		assertEquals(3000, velocidadeTempo, 0);
 	}
 	
 	@Test
 	public void converterDistanciaMetrosTempoSegundos() {
-		double[] velocidadeTempo = Ciclista.converterUnidadePadraoDistanciaTempo("1 20","1", "1");
+		double[] velocidadeTempo = Ciclista.converterUnidadePadraoDistanciaTempo("1 20",Ciclista.HORA, Ciclista.KILOMETROS);
 		assertArrayEquals(new double[] {1000, 72000}, velocidadeTempo, 0);
 	}
 	

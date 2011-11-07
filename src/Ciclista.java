@@ -2,6 +2,14 @@ import java.util.Scanner;
 
 public class Ciclista {
 
+	//CONSTANTES 
+	public static final String KILOMETROS = "1";
+	public static final String METROS = "2";
+	
+	public static final String HORA = "1";
+	public static final String MINUTOS = "2";
+	public static final String SEGUNDOS = "3";
+	
 	public static void main(String [] args) throws CiclistaException {
 		Scanner scanner = new Scanner(System.in);
 		
@@ -29,8 +37,20 @@ public class Ciclista {
 			double[] velocidadeTempoMS = converterUnidadePadraoDistanciaTempo(valoresEntrada,tempoEntrada, distanciaEntrada);
 			double velocidadeMedia = calcularVelocidadeMedia(velocidadeTempoMS[0], velocidadeTempoMS[1]);
 			double velocidadeMediaKmH=velocidadeMedia * 3.6;
-			System.out.println("Velocidade media: " + velocidadeMedia + "m/s" );
-			System.out.println("Velocidade media: " + velocidadeMediaKmH + "km/h" );
+			
+			System.out.println("Selecione o formato de exibição: ");
+			System.out.println("[1] m/s");
+			System.out.println("[2] km/h");
+			String formatoExibicao = scanner.nextLine();
+			
+			if(formatoExibicao.equals("1")){
+				System.out.println("Velocidade media(m/s): " + velocidadeMedia +  " m/s " );
+			}
+			
+			if(formatoExibicao.equals( "2")){
+				System.out.println("Velocidade media(km/h): " + velocidadeMediaKmH +  " km/h " );
+			}
+			
 		}
 	}
 	
@@ -73,11 +93,11 @@ public class Ciclista {
 		double distanciaSeparada = Double.parseDouble(velocidadeTempoString[0]);
 		double padraoDistancia = 0;
 		
-		if(distanciaEntrada.equals( "1")){
+		if(distanciaEntrada.equals(KILOMETROS)){
 			padraoDistancia = distanciaSeparada*1000;
 		}
 			
-		if(distanciaEntrada.equals("2")){
+		if(distanciaEntrada.equals(METROS)){
 			padraoDistancia = distanciaSeparada;
 		}
 		
